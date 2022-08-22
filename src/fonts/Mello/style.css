@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Mello Compressed';
+    src: local('Mello Compressed Bold'), local('Mello-Compressed-Bold'),
+        url('Mello-Cm-Bold.woff2') format('woff2'),
+        url('Mello-Cm-Bold.woff') format('woff'),
+        url('Mello-Cm-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
