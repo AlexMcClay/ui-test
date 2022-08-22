@@ -7,7 +7,7 @@ const testData = [
         id: "P4-AR",
         name: "P4-AR",
         category: "Weapon",
-        description: "Test",
+        description: "Behring's classic P4-AR rifle features a collapsible stock and shortened barrel, making it an ideal choice for close-quarter firefights. Its accuracy and general ease of use make it universally valued among security, military and civilian users.",
         cost: 3525,
         volume: 1500,
         img: "https://starcitizen.tools/images/3/34/P4-AR_-_Default_-_InGame_Cutout_-_Mesh_BG.jpg",
@@ -24,7 +24,7 @@ const testData = [
         id: "P4-AR_Mag",
         name: "P4-AR Magazine",
         category: "Magazine",
-        description: "Test",
+        description: "This magazine for the Behring P4-AR rifle holds thirty 5.56mm cartridges.",
         magazine: {
             for: "P4-AR",
             capacity: 30,
@@ -69,7 +69,7 @@ function SCTradeTerminal() {
                 </div>
             </Box>
             <Box className={"sc-terminal-child-right"}>
-                {selected.state ? <SelectedItem item={selected.item} setBuy={setBuy} /> :
+                {selected.state ? <SelectedItem item={selected.item} setBuy={setBuy} buy={buy} /> :
                 <div className='right-empty'>
                     <p style={{margin: 0, padding: 0}}>NO ITEM SELECTED</p>
                     <p style={{margin: 0, padding: 0}}>SELECT ITEM TO VIEW DETAILS</p>
@@ -85,7 +85,7 @@ function SCTradeTerminal() {
 const Select = ({span}) => {
     return(
         <div className='sc-terminal-select-parent' style={{gridColumn: `span ${span[1]}`, gridRow: span[0]}}>
-            <label for={"test"} className='sc-terminal-select-label'>TEXT</label>
+            <label htmlFor={"test"} className='sc-terminal-select-label'>TEXT</label>
             <select className='sc-terminal-select' name={"test"} id={"test"}>
                 <option value={"test"}>Test</option>
                 <option value={"test"}>Test</option>
@@ -120,8 +120,20 @@ const Item = ({item, setSelected}) => {
     </div>);
 }
 
-const SelectedItem = ({item, setBuy}) => {
-    return <></>
+const SelectedItem = ({item, setBuy, buy}) => {
+    return (
+    <div className='show-item-right'>
+        <div className='show-item-right-main'>
+            <p style={{padding: 0, margin: 0}}>{item.name}</p>
+            <p className={"text-grey"} style={{padding: 0, margin: 0}}>Item Type: {item.category}</p>
+            { typeof item.magazine === 'object' ? <p className={"text-grey"} style={{padding: 0, margin: 0}}>Capacity: {item.magazine.capacity}</p> : ""}
+            <p className={"text-grey"}>{item.description}</p>
+            <img className='right-image' src={item.img} alt={item.id} />
+        </div>
+        <div className={"right-buy-button"}>
+            {!buy ? <Button className={"buy-sell-button"} variant="contained" size="large" onClick={() => setBuy(true)}>Buy</Button> : ""}
+        </div>
+    </div>);
 }
 
 export default SCTradeTerminal

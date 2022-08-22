@@ -44,8 +44,8 @@
 
 .sc-sub-header-bar
 {
-    height: 70%;
-    padding-bottom: 3px;
+    height: 35%;
+    padding-bottom: 0px;
     margin-bottom: 6px;
     border-width: 4px;
     border: solid;
@@ -255,4 +255,71 @@
 {
     color: white !important;
     background-color: var(--off-color) !important;
+}
+
+.show-item-right
+{
+    display: flex;
+    height: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.show-item-right-main
+{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* width */
+.show-item-right-main::-webkit-scrollbar {
+    width: 10px;;
+  }
+  
+  /* Track */
+.show-item-right-main::-webkit-scrollbar-track {
+    background: none;
+    margin: 0 0 2rem 0;
+  }
+  
+  /* Handle */
+.show-item-right-main::-webkit-scrollbar-thumb {
+    background: var(--off-color);
+  }
+
+.right-buy-button
+{
+    margin: 1rem 0rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.text-grey
+{
+    color: rgba(255, 255, 255, 0.6)
+}
+
+.right-image
+{
+    flex-grow: 1;
+    object-fit: contain;
+    width: 100%;
+}
+
+.buy-sell-button
+{
+    color: var(--text-alt-color) !important;
+    background-color: var(--off-color) !important;
+    font-size: 1.5rem !important;
+    padding: 0rem 3rem !important;
+    border: solid !important;
+    border-width: 2px !important;
+    border-radius: 10px !important;
+    border-color: #524a3a !important;
 }
