@@ -120,19 +120,7 @@ const Buy = ({setBuy, item}) => {
                 </Box>
             </Box>
             <Box className={"buy-bottom"}>
-                <Box className='quanity-mult'>
-                    <Typography className={"quanity-mult-text"} >QUALITY MULTIPLIER</Typography>
-                    <Box className='mult-box'>
-                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(0)} size="large">0</Button>
-                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult-5)} size="large">-5</Button>
-                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult-1)} size="large">-1</Button>
-                        <input className='mult-input' type="number" value={mult} onChange={(e) => setMult(Number(e.target.value))} />
-                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult+1)} size="large">+1</Button>
-                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult+5)} size="large">+5</Button>
-                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(99)} size="large">MAX</Button>
-                    </Box>
-                    <Typography className={"quanity-mult-text"} ></Typography>
-                </Box>
+                <BuyQuantMult mult={mult} setMult={setMult} />
                 <Box className={"buy"}>
                     <Typography variant="h5" className={"bottom-text"} >Total</Typography>
                     <Box sx={{display: "flex", gap: "1rem", alignItems: "center"}}>
@@ -143,6 +131,24 @@ const Buy = ({setBuy, item}) => {
             </Box>
         </Box>
     )
+}
+
+const BuyQuantMult = ({mult, setMult}) => {
+    return(
+        <Box className='quanity-mult'>
+            <Typography className={"quanity-mult-text"} >QUALITY MULTIPLIER</Typography>
+            <Box className='mult-box'>
+                <Button className={"mult-button"} variant="contained" onClick={() => setMult(0)} size="large">0</Button>
+                <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult-5)} size="large">-5</Button>
+                <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult-1)} size="large">-1</Button>
+                <input className='mult-input' type="number" value={mult} onChange={(e) => setMult(Number(e.target.value))} />
+                <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult+1)} size="large">+1</Button>
+                <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult+5)} size="large">+5</Button>
+                <Button className={"mult-button"} variant="contained" onClick={() => setMult(99)} size="large">MAX</Button>
+            </Box>
+            <Typography className={"quanity-mult-text-transparent"} style={{color: "#edd9a0"}}>QUALITY MULTIPLIER</Typography>
+        </Box>
+    );
 }
 
 const Items = ({items, setSelected}) => {

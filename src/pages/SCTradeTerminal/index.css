@@ -332,6 +332,7 @@
     height: 100%;
     margin-top: 1rem;
     margin-right: 2rem;
+    margin-bottom: 1rem;
     border: solid !important;
     border-width: 2px !important;
     border-radius: 10px !important;
@@ -416,6 +417,12 @@
 {
     font-family: inherit !important;
     color: var(--des-text-color);
+}
+
+.quanity-mult-text-transparent
+{
+    font-family: inherit !important;
+    color: transparent !important;
 }
 
 .mult-box
