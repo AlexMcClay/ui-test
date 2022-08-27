@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Container, Box, Typography, Button, Divider } from '@mui/material'
 import "./index.css"
 import CloseIcon from '@mui/icons-material/Close';
@@ -56,7 +56,7 @@ function SCTradeTerminal() {
         
         <Box className={"sc-terminal-child"}>
             <Box className={"sc-terminal-child-left"}>
-                {buy ? <Buy setBuy={setBuy} /> : <Items items={testData} setSelected={setSelected} />}
+                {buy ? <Buy setBuy={setBuy}  item={selected.item} /> : <Items items={testData} setSelected={setSelected} />}
             </Box>
             <Box className={"sc-terminal-child-right"}>
                 {selected.state ? <SelectedItem item={selected.item} setBuy={setBuy} buy={buy} /> :
@@ -87,17 +87,61 @@ const Select = ({span}) => {
     );
 }
 
-const Buy = ({setBuy}) => {
+const Buy = ({setBuy, item}) => {
+    const [mult, setMult] = useState(1);
+    const [cost, setCost] = useState(item.cost)
+
+    useEffect(() => {
+        setCost((Number(item.cost)) * (Number(mult)));
+    }, [mult, item.cost])
+
     return (
-        <div className='sc-terminal-buy-parent'>
-            <Box className='sc-terminal-buy-header'>
-                <Box sx={{display: "flex", justifyContent: "space-between"}}>
-                    <Typography className={"sc-terminal-buy-header-text"} variant="h4">BUYING CONFIRMATION</Typography>
-                    <CloseIcon fontSize='large' className={"sc-terminal-buy-header-close"} onClick={() => setBuy(false)} />
+        <Box className='sc-terminal-buy-parent'>
+            <Box className="buy-top">
+                <Box className='sc-terminal-buy-header'>
+                    <Box sx={{display: "flex", justifyContent: "space-between"}}>
+                        <Typography className={"sc-terminal-buy-header-text"} variant="h4">BUYING CONFIRMATION</Typography>
+                        <CloseIcon fontSize='large' className={"sc-terminal-buy-header-close"} onClick={() => setBuy(false)} />
+                    </Box>
+                    <Divider className={"sc-terminal-buy-header-divider"}/>
                 </Box>
-                <Divider className={"sc-terminal-buy-header-divider"}/>
+                <Box sx={{m: "0 1rem"}}>
+                    <Typography sx={{fontFamily: "inherit"}} className='text-dark-grey'>LOCATION</Typography>
+                    <Typography sx={{fontFamily: "inherit", fontSize: "1.25rem"}} className='text-dark-grey'>PERSONAL INVENTORY</Typography>
+                </Box>
+                <Box sx={{m: "0 1rem", display: "flex", justifyContent: "space-between", alignItems: "flex-end"}}>
+                    <Typography className="item-buy-name-text" variant="h6">{item.name}</Typography>
+                    <div className='item-buy-line' style={{width: "100%"}}></div>
+                    <Typography className="item-buy-name-text white" variant="h6">{item.cost} aUEC</Typography>
+                </Box>
+                <Box sx={{m: "0 2rem", display: "flex", flexDirection: "column", gap: "1rem"}}>
+                    <Typography className="item-buy-name-text" variant="h6">ATTACHMENTS</Typography>
+                    <Typography sx={{fontFamily: "inherit"}}>NONE</Typography>
+                </Box>
             </Box>
-        </div>
+            <Box className={"buy-bottom"}>
+                <Box className='quanity-mult'>
+                    <Typography className={"quanity-mult-text"} >QUALITY MULTIPLIER</Typography>
+                    <Box className='mult-box'>
+                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(0)} size="large">0</Button>
+                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult-5)} size="large">-5</Button>
+                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult-1)} size="large">-1</Button>
+                        <input className='mult-input' type="number" value={mult} onChange={(e) => setMult(Number(e.target.value))} />
+                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult+1)} size="large">+1</Button>
+                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(mult+5)} size="large">+5</Button>
+                        <Button className={"mult-button"} variant="contained" onClick={() => setMult(99)} size="large">MAX</Button>
+                    </Box>
+                    <Typography className={"quanity-mult-text"} ></Typography>
+                </Box>
+                <Box className={"buy"}>
+                    <Typography variant="h5" className={"bottom-text"} >Total</Typography>
+                    <Box sx={{display: "flex", gap: "1rem", alignItems: "center"}}>
+                        <Typography variant="h5" className={"bottom-text"} >{cost} aUEC</Typography>
+                        <Button className={"buy-sell-button"} variant="contained" size="large">Buy</Button>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
     )
 }
 

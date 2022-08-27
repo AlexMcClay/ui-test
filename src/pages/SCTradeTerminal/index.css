@@ -5,6 +5,7 @@
     --text-alt-color: #C2A845;
     --full-color: #F2CB51;
     --des-text-color: #edd9a0;
+    --mult-button-size: 40px
 }
 
 @import url("../../fonts/Mello/style.css");
@@ -318,11 +319,12 @@
     border-width: 2px !important;
     border-radius: 10px !important;
     border-color: #524a3a !important;
-    transition: all 0.05 !important;
+    transition: all 1 !important;
+    filter: brightness(100%);
 }
 
 .buy-sell-button:hover{
-    background-color: var(--active-color) !important;
+    filter: brightness(150%) !important;
 }
 
 .sc-terminal-buy-parent
@@ -333,8 +335,17 @@
     border: solid !important;
     border-width: 2px !important;
     border-radius: 10px !important;
-    border-color: var(--full-color) !important;
+    border-color: var(--active-color) !important;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: 'Scriber' !important;
+}
+
+.buy-top
+{
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -342,17 +353,131 @@
 
 .sc-terminal-buy-header-divider
 {
+    font-family: inherit !important;
     width: 100% !important;
     height: 2px !important;
-    background-color: var(--full-color) !important;
+    background-color: var(--active-color) !important;
 }
 
 .sc-terminal-buy-header-close
 {
     cursor: pointer !important;
+    font-family: inherit !important;
 }
 
 .sc-terminal-buy-header-text
 {
-    font-family: 'Scriber' !important;
+    font-family: inherit !important;
+}
+
+.item-buy-name-text
+{
+    font-family: inherit !important;
+    white-space: nowrap;
+    color: var(--des-text-color) !important;
+}
+
+.white{
+    color: white !important;
+}
+
+.text-dark-grey
+{
+    color: var(--text-alt-color);
+}
+
+.item-buy-line
+{
+    height: 1px !important;
+    padding-bottom: 0px;
+    margin: 0 0.25rem;
+    margin-bottom: 8px;
+    background-color: var(--active-color);
+}
+
+.buy-bottom
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.quanity-mult
+{
+    display: flex;
+    background-color: var(--off-color);
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.quanity-mult-text
+{
+    font-family: inherit !important;
+    color: var(--des-text-color);
+}
+
+.mult-box
+{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.mult-button
+{
+    color: var(--off-color)!important;
+    font-family: inherit !important;
+    background-color: var(--text-alt-color)!important;
+    font-size: 1.5rem !important;
+    padding: 0rem !important;
+    width: 50px !important;
+    max-width: 50px !important;
+    min-width: 50px !important;
+    max-height: var(--mult-button-size) !important;
+    height: var(--mult-button-size) !important;
+    min-height: var(--mult-button-size) !important;
+    border-width: 0px !important;
+    border-radius: 5px !important;
+    transition: all 1 !important;
+}
+
+.mult-input
+{
+    background-color: #121212;
+    outline: none;
+    border-radius: 5px;
+    height: var(--mult-button-size);
+    text-align: center;
+    font-family: inherit;
+    font-size: 1.5rem;
+    color: white;
+    width: 150px;
+    border: solid;
+    border-width: 1.5px;
+    border-color: var(--active-color);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}
+
+.buy
+{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center
+}
+
+.bottom-text
+{
+    font-family: inherit !important;
+    font-size: 1.75rem !important;
+    color: var(--des-text-color);
 }
