@@ -122,7 +122,7 @@ const Buy = ({setBuy, item}) => {
             <Box className={"buy-bottom"}>
                 <BuyQuantMult mult={mult} setMult={setMult} />
                 <Box className={"buy"}>
-                    <Typography variant="h5" className={"bottom-text"} >Total</Typography>
+                    <Typography variant="h5" className={"bottom-text"} >TOTAL</Typography>
                     <Box sx={{display: "flex", gap: "1rem", alignItems: "center"}}>
                         <Typography variant="h5" className={"bottom-text"} >{cost} aUEC</Typography>
                         <Button className={"buy-sell-button"} variant="contained" size="large">Buy</Button>
