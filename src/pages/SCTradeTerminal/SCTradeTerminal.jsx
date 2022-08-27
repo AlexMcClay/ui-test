@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import { Container, Box, Typography, Button } from '@mui/material'
+import React, {useState} from 'react'
+import { Container, Box, Typography, Button, Divider } from '@mui/material'
 import "./index.css"
+import CloseIcon from '@mui/icons-material/Close';
 
 const testData = [
     {
@@ -55,18 +56,7 @@ function SCTradeTerminal() {
         
         <Box className={"sc-terminal-child"}>
             <Box className={"sc-terminal-child-left"}>
-                <div className={"sc-terminal-filters"}>
-                    <Select span={[1, 2]}/>
-                    <Select span={[2, 1]}/>
-                    <Select span={[2, 1]}/>
-                    <Select span={[2, 2]}/>
-                </div>
-                <div className='line' />
-                <div className='sc-terminal-items'>
-                    {testData.map((item) => {
-                        return <Item item={item} key={item.id} setSelected={setSelected} />
-                    })}
-                </div>
+                {buy ? <Buy setBuy={setBuy} /> : <Items items={testData} setSelected={setSelected} />}
             </Box>
             <Box className={"sc-terminal-child-right"}>
                 {selected.state ? <SelectedItem item={selected.item} setBuy={setBuy} buy={buy} /> :
@@ -95,6 +85,39 @@ const Select = ({span}) => {
             </select>
         </div>
     );
+}
+
+const Buy = ({setBuy}) => {
+    return (
+        <div className='sc-terminal-buy-parent'>
+            <Box className='sc-terminal-buy-header'>
+                <Box sx={{display: "flex", justifyContent: "space-between"}}>
+                    <Typography className={"sc-terminal-buy-header-text"} variant="h4">BUYING CONFIRMATION</Typography>
+                    <CloseIcon fontSize='large' className={"sc-terminal-buy-header-close"} onClick={() => setBuy(false)} />
+                </Box>
+                <Divider className={"sc-terminal-buy-header-divider"}/>
+            </Box>
+        </div>
+    )
+}
+
+const Items = ({items, setSelected}) => {
+    return(
+        <>
+            <div className={"sc-terminal-filters"}>
+                <Select span={[1, 2]}/>
+                <Select span={[2, 1]}/>
+                <Select span={[2, 1]}/>
+                <Select span={[2, 2]}/>
+            </div>
+            <div className='line' />
+            <div className='sc-terminal-items'>
+                {items.map((item) => {
+                    return <Item item={item} key={item.id} setSelected={setSelected} />
+                })}
+            </div>
+        </>
+    )
 }
 
 const Item = ({item, setSelected}) => {

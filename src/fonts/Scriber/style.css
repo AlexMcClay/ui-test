@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'Scriber';
+    src: local('Scriber'), local('Scriber-W00-Medium'),
+        url('Scriber-W00-Medium.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
